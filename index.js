@@ -86,12 +86,23 @@ app.get(`/services`, (req, res) => {
     res.render('services', { services });
 })
 
-app.get('/services/:servicio', (req, res) => {
-    console.log(req.params)
-    res.render("service")
-})
+// app.get('/services/:service', (req, res) => {
+//     console.log(req.params)
+//     res.render(req.params.ser)
+// })
 
-
+app.get('/services/:name', (req, res) => {
+    const service = req.params.name;
+    const serviceData = services.find(
+        (item) => item.url === `/services/${service}`
+    )
+    if (!serviceData) {
+        return res.status(404).render("404", { title: "service not Found" })
+    }
+    res.render("service", { service: serviceData });
+});
+// const servicio = req.params.services
+// app.get servicio.find((item) => servicio === item.url)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
