@@ -1,12 +1,14 @@
 <div class="row">
     <h1>Nuestros servicios</h1>
-    <ul>
-        {{#each services}}
-        <li>
-            <h2>{{name}}</h2>
+
+    {{#each services as |service|}}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h2 class="card-title">{{service.name}}</h2>
             <p>{{description}}</p>
-            <a href="{{url}}">mas informacion</a>
-        </li>
-        {{/each}}
-    </ul>
+            <a href="{{service.url}}">mas informacion</a>
+        </div>
+    </div>
+    {{/each}}
+
 </div>
